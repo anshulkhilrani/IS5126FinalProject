@@ -23,6 +23,10 @@ train_df = pd.read_parquet(r'C:\Users\khilr\Desktop\IS5126FinalProject\ag_news\d
 train_df['cleaned_text'] = train_df['text'].apply(clean_text)
 test_df['cleaned_text'] = test_df['text'].apply(clean_text)
 
+train_df.to_csv(r'C:\Users\khilr\Desktop\IS5126FinalProject\ag_news_clean\train.csv')
+test_df.to_csv(r'C:\Users\khilr\Desktop\IS5126FinalProject\ag_news_clean\test.csv')
+
+
 print('Cleaning Complete')
 
 print(train_df.head(10))
