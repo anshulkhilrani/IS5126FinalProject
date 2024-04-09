@@ -1,0 +1,1 @@
+pip install pyarrow bs4 nltk lxml
