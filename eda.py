@@ -113,7 +113,7 @@ def plotBarChart(data, colormap, xlabel, ylabel, title, filename):
 
 plotBarChart(trainBeforeStop, 'viridis', 'Text', 'Count', 'Top 20 Words Before Removing Stopwords', '\\top20BeforeStopwords.png')
 plotBarChart(trainAfterStop, 'viridis', 'Text', 'Count', 'Top 20 Words After Removing Stopwords', '\\top20AfterStopwords.png')
-plotBarChart(trainBeforeBigram, 'viridis', 'Text', 'Count', 'Top 20 Bigrams After Removing Stopwords', '\\top20AfterBigrams.png')
+plotBarChart(trainBeforeBigram, 'viridis', 'Text', 'Count', 'Top 20 Bigrams After Removing Stopwords', '\\top20BeforeBigrams.png')
 plotBarChart(trainAfterBigram, 'viridis', 'Text', 'Count', 'Top 20 Bigrams After Removing Stopwords', '\\top20AfterBigrams.png')
-plotBarChart(trainBeforeTrigram, 'viridis', 'Text', 'Count', 'Top 20 Trigrams After Removing Stopwords', '\\top20AfterTrigrams.png')
+plotBarChart(trainBeforeTrigram, 'viridis', 'Text', 'Count', 'Top 20 Trigrams After Removing Stopwords', '\\top20BeforeTrigrams.png')
 plotBarChart(trainAfterTrigram, 'viridis', 'Text', 'Count', 'Top 20 Trigrams After Removing Stopwords', '\\top20AfterTrigrams.png')
