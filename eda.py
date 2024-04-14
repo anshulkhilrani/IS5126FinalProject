@@ -32,6 +32,20 @@ def getTopNWords(corpus, n=None):
 commonBeforeN = getTopNWords(train_df['text'], 20)
 commonAfterN = getTopNWords(train_df['cleaned_text'], 20)
 
+commonFor0 = getTopNWords(train_df.loc[train_df['label']==0]['cleaned_text'], 20)
+commonFor1 = getTopNWords(train_df.loc[train_df['label']==1]['cleaned_text'], 20)
+commonFor2 = getTopNWords(train_df.loc[train_df['label']==2]['cleaned_text'], 20)
+commonFor3 = getTopNWords(train_df.loc[train_df['label']==3]['cleaned_text'], 20)
+
+common0 = pd.DataFrame(commonFor0, columns=['text', 'count'])
+common1 = pd.DataFrame(commonFor1, columns=['text', 'count'])
+common2 = pd.DataFrame(commonFor2, columns=['text', 'count'])
+common3 = pd.DataFrame(commonFor3, columns=['text', 'count'])
+
+commonFinal0 = common0.groupby('text', as_index=False).sum().sort_values('count', ascending=False)
+commonFinal1 = common1.groupby('text', as_index=False).sum().sort_values('count', ascending=False)
+commonFinal2 = common2.groupby('text', as_index=False).sum().sort_values('count', ascending=False)
+commonFinal3 = common3.groupby('text', as_index=False).sum().sort_values('count', ascending=False)
 
 trainBefStop = pd.DataFrame(commonBeforeN, columns= ['text', 'count'])
 trainBeforeStop = trainBefStop.groupby('text', as_index=False).sum().sort_values('count', ascending=False)
@@ -117,3 +131,8 @@ plotBarChart(trainBeforeBigram, 'viridis', 'Text', 'Count', 'Top 20 Bigrams Afte
 plotBarChart(trainAfterBigram, 'viridis', 'Text', 'Count', 'Top 20 Bigrams After Removing Stopwords', '\\top20AfterBigrams.png')
 plotBarChart(trainBeforeTrigram, 'viridis', 'Text', 'Count', 'Top 20 Trigrams After Removing Stopwords', '\\top20BeforeTrigrams.png')
 plotBarChart(trainAfterTrigram, 'viridis', 'Text', 'Count', 'Top 20 Trigrams After Removing Stopwords', '\\top20AfterTrigrams.png')
+
+plotBarChart(commonFinal0, 'magma', 'Word', 'Count', 'Top 20 Words for World News', '\\wordsWorld.png')
+plotBarChart(commonFinal1, 'magma', 'Word', 'Count', 'Top 20 Words for Sports News', '\\wordsSports.png')
+plotBarChart(commonFinal2, 'magma', 'Word', 'Count', 'Top 20 Words for Business News', '\\wordsBusiness.png')
+plotBarChart(commonFinal3, 'magma', 'Word', 'Count', 'Top 20 Words for Sci/Tech News', '\\wordsSciTech.png')
