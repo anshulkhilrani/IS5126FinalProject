@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Display results</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="">
+        <style>
+            .news-cont {
+                min-height: 100px;
+                max-height: 450px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">	    
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto  order-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="{{ url_for('hello_world') }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('fetch_news') }}">Fetch</a>
+                  </li>
+                </ul>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+                {% for key in (to_render.keys() | list)[:2] %}
+                <div class="col">
+                    <div class="container overflow-auto news-cont">
+                        <h3 class="text-center display-3"> {{ key }} </h3>
+                            <ul class="list-group">
+                                {% for ele in to_render[key] %}
+                                    <li class="list-group-item">
+                                        <p class="text-center"> {{ele["title"]}} </p>
+                                        <a href="{{ele['link']}}">{{ele['link']}}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="row">
+                    {% for key in (to_render.keys() | list)[2:] %}
+                    <div class="col">
+                        <div class="container overflow-auto news-cont">
+                            <h3 class="text-center display-3"> {{ key }} </h3>
+                                <ul class="list-group">
+                                    {% for ele in to_render[key] %}
+                                        <li class="list-group-item">
+                                            <p class="text-center"> {{ele["title"]}} </p>
+                                            <a href="{{ele['link']}}">{{ele['link']}}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+          </div>
+                
+    </body>
+</html>
+

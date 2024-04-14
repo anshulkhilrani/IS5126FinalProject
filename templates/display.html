@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Display results</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="">
+        <style>
+            .form { 
+                min-width: 300px;
+                min-height: 200px;
+                max-width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                margin-top: 100px;
+            }
+            .navbar { 
+                font-size: 20px;
+            }
+            .list-group-item {
+                min-width: 300px;
+                font-size: large;
+            }
+        </style>
+        <script>
+            function hide(even) { 
+                document.getElementById("spinner").className = "d-grid"
+                document.getElementById("sub_but").className = "d-none"
+                return true
+            }
+        </script>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">	    
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto  order-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('hello_world') }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="{{ url_for('fetch_news') }}">Fetch</a>
+                  </li>
+                </ul>
+          </nav>
+            
+        <div class = "overflow-auto">
+        <div class = "mb-3 form border border-5 shadow-sm p-3 mb-5 bg-body rounded ">
+
+            <div> 
+                <h2>Predictions on:</h2>
+                <p class="text-center"> {{ to_render["txt"] }} </p>
+                <ul class="list-group">
+                {% for key in (to_render.keys() | list)[1:] %}
+                <li class="list-group-item">{{ key}} - {{to_render[key] }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            
+        <br>
+        <div class="d-grid" id="sub_but">
+                <a class="btn btn-warning btn-block rounded" href="{{ url_for('hello_world') }}">Post Again</a>
+        </div>
+            <div id="spinner" class="d-none">
+                <button class="btn btn-primary"  >
+                <span class="spinner-border spinner-border-sm" ></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
+
